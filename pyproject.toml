@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "fastapi-experiment"
+version = "0.1.0"
+description = "An FastAPI example project to experiment with hardcore depedency injection and tests. "
+authors = ["Luiz F. A. de Prá <rawarkanis@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.89.1"
+gunicorn = "^20.1.0"
+uvicorn = "^0.20.0"
+python-dotenv = "^0.21.0"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2"
+pytest-cov = "^4.0"
+pytest-xdist = "^3.1"
+pytest-asyncio = "^0.20"
+black = "^22.12"
+isort = "^5.11"
+httpx = "^0.23"
+bandit = "^1.7"
+pre-commit = "^2.21"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+
+[tool.isort]
+py_version = 311
+profile = "black"
+line_lenght = 120
+known_first_party = ""
+known_local_folder = "api"
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+default_section = "THIRDPARTY"
+
+[tool.pytest.ini_options]
+addopts = "-vv -n auto --cov=api --cov-fail-under=90 --pdblcs=IPython.terrminal.debugger:TerminalPdb"
+testpaths = ["tests"]
