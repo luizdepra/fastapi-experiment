@@ -21,7 +21,8 @@ pytest-asyncio = "^0.20"
 black = "^22.12"
 isort = "^5.11"
 httpx = "^0.23"
-bandit = "^1.7"
+mypy = "^0.991"
+flake8 = "^6.0.0"
 pre-commit = "^2.21"
 
 
@@ -36,7 +37,7 @@ target-version = ['py311']
 [tool.isort]
 py_version = 311
 profile = "black"
-line_lenght = 120
+line_length = 120
 known_first_party = ""
 known_local_folder = "api"
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
