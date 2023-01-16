@@ -46,5 +46,6 @@ sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 default_section = "THIRDPARTY"
 
 [tool.pytest.ini_options]
-addopts = "-vv -n auto --cov=api --cov-fail-under=90 --pdbcls=IPython.terrminal.debugger:TerminalPdb"
+#addopts = "-vv --cov=api --cov-fail-under=90 --pdbcls=IPython.terrminal.debugger:TerminalPdb"
+addopts = "-vv --cov=api --pdbcls=IPython.terrminal.debugger:TerminalPdb"
 testpaths = ["tests"]

@@ -1,26 +1,26 @@
-.PHONY: all  format isort black lint type test test-cov run build
+.PHONY: all isort black flake8 mypy test test-cov format run
 
 CMD:=poetry run
 SRC:=api
 TESTS:=tests
 
-all: lint format test build
-
-format: isort black
+all: flake8 mypy isort black test
 
 isort:
-	$(CMD) isort $(SRC) $(TESTS)
+	$(CMD) isort --check $(SRC) $(TESTS)
 
 black:
-	$(CMD) black $(SRC) $(TESTS)
-
-lint: flake8 type
+	$(CMD) black --check $(SRC) $(TESTS)
 
 flake8:
 	$(CMD) flake8 $(SRC) $(TESTS)
 
-type:
-	$(CMD) mypy $(SRC) $(TESTS)
+mypy:
+	$(CMD) mypy -m $(SRC)
+
+format:
+	$(CMD) isort $(SRC) $(TESTS)
+	$(CMD) black $(SRC) $(TESTS)
 
 test:
 	$(CMD) pytest --cov=$(SRC) $(TESTS)
