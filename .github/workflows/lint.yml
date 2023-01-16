@@ -23,15 +23,15 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: load poetry cache
+        id: cached-poetry
         uses: actions/cache@v3
         with:
-          id: cached-poetry
           path: ~/.cache/pypoetry
           key: poetry-cache-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ env.POETRY_VERSION }}
       - name: load dependencies cache
+        id: cached-deps
         uses: actions/cache@v3
         with:
-          id: cached-deps
           path: ~/.local
           key: deps-cache-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('.github/workflows/*.yml') }}
       - name: install poetry
