@@ -1,0 +1,50 @@
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+name: run lints
+
+env:
+  SKIP: no-commit-to-branch
+  PYTHON_VERSION: 3.11
+  POETRY_VERSION: 1.3.2
+
+jobs:
+  lint:
+    name: fastapi-experiment
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: setup python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: load poetry cache
+        id: cached-poetry
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pypoetry
+          key: poetry-cache-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ env.POETRY_VERSION }}
+      - name: load dependencies cache
+        id: cached-deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.local
+          key: deps-cache-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('.github/workflows/*.yml') }}
+      - name: install poetry
+        if: steps.cached-poetry.outputs.cache-hit != 'true'
+        uses: snok/install-poetry@v1
+      - name: install depedencies
+        if: steps.cached-deps.outputs.cache-hit != 'true'
+        run: poetry install
+      - name: run flake8
+        run: poetry run flake8 api tests
+      - name: run mypy
+        run: poetry run mypy -m api
+      - name: run isort
+        run: poetry run isort --check api tests
+      - name: run black
+        run: poetry run black --check api tests
