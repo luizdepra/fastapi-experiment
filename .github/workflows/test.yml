@@ -21,7 +21,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: "poetry"
       - name: load poetry cache
         uses: actions/cache@v3
         with:
