@@ -30,6 +30,3 @@ test-cov:
 
 run:
 	$(CMD) gunicorn --worker-class uvicorn.workers.UvicornWorker api.main:app
-
-build:
-	@echo "build"
