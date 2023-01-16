@@ -18,7 +18,6 @@ sqlalchemy = { version = "^1.4.46", extras = ["postgresql_asyncpg"] }
 [tool.poetry.dev-dependencies]
 pytest = "^7.2"
 pytest-cov = "^4.0"
-pytest-xdist = "^3.1"
 pytest-asyncio = "^0.20"
 black = "^22.12"
 ipdb = "^0.13"
@@ -47,5 +46,5 @@ sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 default_section = "THIRDPARTY"
 
 [tool.pytest.ini_options]
-addopts = "-vv -n auto --cov=api --cov-fail-under=90 --pdblcs=IPython.terrminal.debugger:TerminalPdb"
+addopts = "-vv -n auto --cov=api --cov-fail-under=90 --pdbcls=IPython.terrminal.debugger:TerminalPdb"
 testpaths = ["tests"]
