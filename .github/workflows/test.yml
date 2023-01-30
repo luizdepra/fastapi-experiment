@@ -25,19 +25,23 @@ jobs:
         id: cached-poetry
         uses: actions/cache@v3
         with:
-          path: ~/.cache/pypoetry
+          path: ~/.local/share/pypoetry
           key: poetry-cache-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ env.POETRY_VERSION }}
       - name: load dependencies cache
         id: cached-deps
         uses: actions/cache@v3
         with:
-          path: ~/.local
+          path: .venv
           key: deps-cache-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('.github/workflows/*.yml') }}
       - name: install poetry
         if: steps.cached-poetry.outputs.cache-hit != 'true'
         uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
       - name: install depedencies
         if: steps.cached-deps.outputs.cache-hit != 'true'
-        run: poetry install
+        run: poetry install --no-interaction --no-root
       - name: run pytest
         run: poetry run pytest
