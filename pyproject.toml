@@ -25,7 +25,7 @@ isort = "^5.12"
 httpx = "^0.23"
 mypy = "^0.991"
 flake8 = "^6.0"
-pre-commit = "^2.21"
+pre-commit = "^3.0"
 
 
 [build-system]
