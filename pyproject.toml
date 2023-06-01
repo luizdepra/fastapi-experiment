@@ -16,7 +16,7 @@ sqlalchemy = { version = "^2.0.4", extras = ["postgresql_asyncpg"] }
 
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.2"
+pytest = "^7.3"
 pytest-cov = "^4.0"
 pytest-asyncio = "^0.20"
 black = "^23.3"
