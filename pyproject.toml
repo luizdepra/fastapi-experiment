@@ -11,7 +11,7 @@ fastapi = "^0.103.0"
 gunicorn = "^21.2.0"
 uvicorn = "^0.23.2"
 python-dotenv = "^1.0.0"
-alembic = "^1.12.0"
+alembic = "^1.12.1"
 sqlalchemy = { version = "^2.0.21", extras = ["postgresql_asyncpg"] }
 
 
