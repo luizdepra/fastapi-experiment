@@ -19,7 +19,7 @@ sqlalchemy = { version = "^2.0.21", extras = ["postgresql_asyncpg"] }
 pytest = "^7.4"
 pytest-cov = "^4.1"
 pytest-asyncio = "^0.21"
-black = "^23.9"
+black = "^23.10"
 ipdb = "^0.13"
 isort = "^5.12"
 httpx = "^0.25"
