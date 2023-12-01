@@ -23,7 +23,7 @@ black = "^23.11"
 ipdb = "^0.13"
 isort = "^5.12"
 httpx = "^0.25"
-mypy = "^1.5"
+mypy = "^1.7"
 flake8 = "^6.0"
 pre-commit = "^3.5"
 
