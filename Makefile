@@ -1,32 +1,35 @@
-.PHONY: all isort black flake8 mypy test test-cov format run
+.PHONY: all install test test-cov pre-commit check fix run
 
 CMD:=poetry run
-SRC:=api
+SRCS:=main.py hypercorn_config.py api
 TESTS:=tests
 
-all: flake8 mypy isort black test
+all: install fix test-cov
 
-isort:
-	$(CMD) isort --check $(SRC) $(TESTS)
+install:
+	poetry install --no-root
+	$(CMD) pre-commit install
 
-black:
-	$(CMD) black --check $(SRC) $(TESTS)
+pre-commit:
+	$(CMD) pe-commit run --all --verbose
 
-flake8:
-	$(CMD) flake8 $(SRC) $(TESTS)
+check:
+	$(CMD) ruff check $(SRCS) $(TESTS)
+	$(CMD) ruff format --check $(SRCS) $(TESTS)
+	# enable it later $(CMD) mypy $(SRCS) $(TESTS)
+
+fix:
+	$(CMD) ruff check --fix $(SRCS) $(TESTS)
+	$(CMD) ruff format $(SRCS) $(TESTS)
 
 mypy:
-	$(CMD) mypy -m $(SRC)
-
-format:
-	$(CMD) isort $(SRC) $(TESTS)
-	$(CMD) black $(SRC) $(TESTS)
+	$(CMD) mypy -m $(SRCS)
 
 test:
-	$(CMD) pytest --cov=$(SRC) $(TESTS)
+	$(CMD) pytest --cov=$(SRCS) $(TESTS)
 
 test-cov:
-	$(CMD) pytest --cov=$(SRC) $(TESTS) --cov-report html
+	$(CMD) pytest --cov=$(SRCS) $(TESTS) --cov-report html
 
 run:
-	$(CMD) gunicorn --worker-class uvicorn.workers.UvicornWorker api.main:app
+	$(CMD) ./start_local.sh

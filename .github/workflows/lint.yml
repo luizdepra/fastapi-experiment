@@ -7,9 +7,8 @@ on:
 name: run lints
 
 env:
-  SKIP: no-commit-to-branch
-  PYTHON_VERSION: 3.11
-  POETRY_VERSION: 1.3.2
+  PYTHON_VERSION: 3.12
+  POETRY_VERSION: 1.7.1
 
 jobs:
   lint:
@@ -44,11 +43,5 @@ jobs:
       - name: install depedencies
         if: steps.cached-deps.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
-      - name: run flake8
-        run: poetry run flake8 api tests
-      - name: run mypy
-        run: poetry run mypy -m api
-      - name: run isorte
-        run: poetry run isort --check api tests
-      - name: run black
-        run: poetry run black --check api tests
+      - name: run lint check
+        run: make check

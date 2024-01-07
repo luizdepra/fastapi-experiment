@@ -6,44 +6,38 @@ authors = ["Luiz F. A. de Prá <rawarkanis@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 fastapi = "^0.108.0"
-gunicorn = "^21.2.0"
-uvicorn = "^0.24.0"
+hypercorn = "^0.16.0"
 python-dotenv = "^1.0.0"
 alembic = "^1.13.1"
-sqlalchemy = { version = "^2.0.23", extras = ["postgresql_asyncpg"] }
+sqlalchemy = { version = "^2.0.25", extras = ["postgresql_asyncpg"] }
 
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.4"
 pytest-cov = "^4.1"
-pytest-asyncio = "^0.21"
-black = "^23.12"
+pytest-asyncio = "^0.23"
+pytest-httpx = "^0.28"
+pytest-mock = "^3.12"
+ruff = "^0.1"
 ipdb = "^0.13"
-isort = "^5.13"
-httpx = "^0.25"
-mypy = "^1.7"
-flake8 = "^6.0"
-pre-commit = "^3.5"
+httpx = "^0.26"
+mypy = "^1.8"
+pre-commit = "^3.6"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.black]
+[tool.ruff]
+target-version = "py312"
 line-length = 120
-target-version = ['py311']
+extend-exclude = ["migrations", "venv", ".venv"]
 
-[tool.isort]
-py_version = 311
-profile = "black"
-line_length = 120
-known_first_party = ""
-known_local_folder = "api"
-sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-default_section = "THIRDPARTY"
+[tool.ruff.isort]
+known-local-folder = ["api", "tests"]
 
 [tool.pytest.ini_options]
 #addopts = "-vv --cov=api --cov-fail-under=90 --pdbcls=IPython.terrminal.debugger:TerminalPdb"
