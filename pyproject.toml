@@ -7,11 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-fastapi = "^0.109.1"
+fastapi = "^0.110.0"
 hypercorn = "^0.16.0"
 python-dotenv = "^1.0.1"
 alembic = "^1.13.1"
-sqlalchemy = { version = "^2.0.25", extras = ["postgresql_asyncpg"] }
+sqlalchemy = { version = "^2.0.27", extras = ["postgresql_asyncpg"] }
 
 
 [tool.poetry.dev-dependencies]
@@ -20,7 +20,7 @@ pytest-cov = "^4.1"
 pytest-asyncio = "^0.23"
 pytest-httpx = "^0.29"
 pytest-mock = "^3.12"
-ruff = "^0.1"
+ruff = "^0.3"
 ipdb = "^0.13"
 httpx = "^0.26"
 mypy = "^1.8"
