@@ -23,7 +23,7 @@ pytest-mock = "^3.14"
 ruff = "^0.5"
 ipdb = "^0.13"
 httpx = "^0.26"
-mypy = "^1.10"
+mypy = "^1.11"
 pre-commit = "^3.7"
 
 
