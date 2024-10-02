@@ -7,15 +7,15 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-fastapi = "^0.112.2"
+fastapi = "^0.115.0"
 hypercorn = "^0.17.3"
 python-dotenv = "^1.0.1"
-alembic = "^1.13.2"
-sqlalchemy = { version = "^2.0.32", extras = ["postgresql_asyncpg"] }
+alembic = "^1.13.3"
+sqlalchemy = { version = "^2.0.35", extras = ["postgresql_asyncpg"] }
 
 
 [tool.poetry.dev-dependencies]
-pytest = "^8.2"
+pytest = "^8.3"
 pytest-cov = "^5.0"
 pytest-asyncio = "^0.24"
 pytest-httpx = "^0.29"
