@@ -24,7 +24,7 @@ ruff = "^0.6"
 ipdb = "^0.13"
 httpx = "^0.26"
 mypy = "^1.11"
-pre-commit = "^3.8"
+pre-commit = "^4.0"
 
 
 [build-system]
