@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-fastapi = "^0.115.6"
+fastapi = "^0.115.11"
 hypercorn = "^0.17.3"
 python-dotenv = "^1.0.1"
 alembic = "^1.14.1"
