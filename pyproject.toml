@@ -9,7 +9,7 @@ readme = "README.md"
 python = "^3.12"
 fastapi = "^0.115.12"
 hypercorn = "^0.17.3"
-python-dotenv = "^1.0.1"
+python-dotenv = "^1.1.0"
 alembic = "^1.14.1"
 sqlalchemy = { version = "^2.0.40", extras = ["postgresql_asyncpg"] }
 
