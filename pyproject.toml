@@ -11,7 +11,7 @@ fastapi = "^0.115.11"
 hypercorn = "^0.17.3"
 python-dotenv = "^1.0.1"
 alembic = "^1.14.1"
-sqlalchemy = { version = "^2.0.38", extras = ["postgresql_asyncpg"] }
+sqlalchemy = { version = "^2.0.40", extras = ["postgresql_asyncpg"] }
 
 
 [tool.poetry.dev-dependencies]
