@@ -1,45 +1,41 @@
-[tool.poetry]
+[project]
+authors = [{ name = "Luiz F. A. de Prá", email = "rawarkanis@gmail.com" }]
+requires-python = "<4.0,>=3.12"
+dependencies = [
+    "fastapi<1.0.0,>=0.115.12",
+    "hypercorn<1.0.0,>=0.17.3",
+    "python-dotenv<2.0.0,>=1.1.0",
+    "alembic<2.0.0,>=1.14.1",
+    "sqlalchemy[postgresql_asyncpg]<3.0.0,>=2.0.40",
+]
 name = "fastapi-experiment"
 version = "0.1.0"
 description = "An FastAPI example project to experiment with hardcore depedency injection and tests. "
-authors = ["Luiz F. A. de Prá <rawarkanis@gmail.com>"]
 readme = "README.md"
 
-[tool.poetry.dependencies]
-python = "^3.12"
-fastapi = "^0.115.12"
-hypercorn = "^0.17.3"
-python-dotenv = "^1.1.0"
-alembic = "^1.14.1"
-sqlalchemy = { version = "^2.0.40", extras = ["postgresql_asyncpg"] }
-
-
-[tool.poetry.dev-dependencies]
-pytest = "^8.3"
-pytest-cov = "^6.0"
-pytest-asyncio = "^0.25"
-pytest-httpx = "^0.29"
-pytest-mock = "^3.14"
-ruff = "^0.11"
-ipdb = "^0.13"
-httpx = "^0.26"
-mypy = "^1.15"
-pre-commit = "^4.2"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "pytest<9.0,>=8.3",
+    "pytest-cov<7.0,>=6.0",
+    "pytest-asyncio<1.0,>=0.25",
+    "pytest-httpx<1.0,>=0.29",
+    "pytest-mock<4.0,>=3.14",
+    "ipdb<1.0,>=0.13",
+    "httpx<1.0,>=0.26",
+]
 
 [tool.ruff]
 target-version = "py312"
 line-length = 120
 extend-exclude = ["migrations", "venv", ".venv"]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-local-folder = ["api", "tests"]
 
 [tool.pytest.ini_options]
 #addopts = "-vv --cov=api --cov-fail-under=90 --pdbcls=IPython.terrminal.debugger:TerminalPdb"
 addopts = "-vv --cov=api --pdbcls=IPython.terrminal.debugger:TerminalPdb"
 testpaths = ["tests"]
+
+[tool.uv]
+default-groups = []

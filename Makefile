@@ -1,35 +1,38 @@
 .PHONY: all install test test-cov pre-commit check fix run
 
-CMD:=poetry run
+RUN_CMD:=uv run
 SRCS:=main.py hypercorn_config.py api
 TESTS:=tests
 
 all: install fix test-cov
 
 install:
-	poetry install --no-root
-	$(CMD) pre-commit install
+	uv tool install ruff
+	uv tool install pre-commit
+	uv tool install mypy
+	uv sync --all-extras --dev
+	$(RUN_CMD) pre-commit install
 
 pre-commit:
-	$(CMD) pe-commit run --all --verbose
+	$(RUN_CMD) pe-commit run --all --verbose
 
 check:
-	$(CMD) ruff check $(SRCS) $(TESTS)
-	$(CMD) ruff format --check $(SRCS) $(TESTS)
-	# enable it later $(CMD) mypy $(SRCS) $(TESTS)
+	$(RUN_CMD) ruff check $(SRCS) $(TESTS)
+	$(RUN_CMD) ruff format --check $(SRCS) $(TESTS)
+	# enable it later $(RUN_CMD) mypy $(SRCS) $(TESTS)
 
 fix:
-	$(CMD) ruff check --fix $(SRCS) $(TESTS)
-	$(CMD) ruff format $(SRCS) $(TESTS)
+	$(RUN_CMD) ruff check --fix $(SRCS) $(TESTS)
+	$(RUN_CMD) ruff format $(SRCS) $(TESTS)
 
 mypy:
-	$(CMD) mypy -m $(SRCS)
+	$(RUN_CMD) mypy -m $(SRCS)
 
 test:
-	$(CMD) pytest --cov=$(SRCS) $(TESTS)
+	$(RUN_CMD) pytest --cov=$(SRCS) $(TESTS)
 
 test-cov:
-	$(CMD) pytest --cov=$(SRCS) $(TESTS) --cov-report html
+	$(RUN_CMD) pytest --cov=$(SRCS) $(TESTS) --cov-report html
 
 run:
-	$(CMD) ./start_local.sh
+	$(CMRUN_CMDD) ./start_local.sh
