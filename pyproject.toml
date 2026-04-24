@@ -4,7 +4,7 @@ requires-python = "<4.0,>=3.12"
 dependencies = [
     "fastapi<1.0.0,>=0.115.12",
     "hypercorn<1.0.0,>=0.17.3",
-    "python-dotenv<2.0.0,>=1.1.0",
+    "python-dotenv>=1.2.2,<2.0.0",
     "alembic<2.0.0,>=1.14.1",
     "sqlalchemy[postgresql_asyncpg]<3.0.0,>=2.0.40",
 ]
